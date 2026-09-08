@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Login Portal</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+    * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+    body {
+        font-weight: 400;
+        background: rgba(255, 255, 255, 0.12);
+}
+
+    .form-section {
+        background: #0f172a;
+        background-size: cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    
+    @keyframes form {
+        from {
+            transform: scale(0);
+        }
+        to {
+            transform: scale(1.0);
+        }
+    }
+    
+    .form-container {
+        position: absolute;
+        top: 35%;
+        box-shadow:0 0 10px 4px;
+        display: none;
+        opacity: 0;
+        background: transparent;
+        backdrop-filter: blur(10px);
+        border: 1px solid #f0f0f0;
+        color: #0f172a;
+        width: 90%;
+        padding: 20px;
+        text-align: center;
+        border-radius: 8px;
+    }
+    
+    .form-container:target{
+        animation: form 2s;
+        display: block;
+        opacity: 1;
+    }
+    
+    @keyframes form {
+        from {
+            transform: scale(0);
+        }
+        to {
+            transform: scale(1);
+        }
+    }
+    
+    
+    form {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .input-user-pass {
+        width: 100%;
+        height: 50px;
+        border-radius: 25px;
+        padding: 15px;
+        border: none;
+        outline: none;
+        font-size: 16px;
+        font-weight: 400;
+        cursor: pointer;
+    }
+    
+    .div-btn {
+        width: 100%;
+    }
+    
+    .login-btn {
+        background-color: #0f172a;
+        width: 100%;
+        height: 50px;
+        border-radius:25px ;
+        border: none;
+        box-shadow:0 0 15px 6px #00f4ff ;
+        font-weight: bold;
+        cursor: pointer;
+        font-size: 18px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition:
+        background-color #0f172a ,
+        transform 0.3s,
+        box-shadow 0.3s ;
+    }
+    
+
+    .login-btn:hover {
+        background-color: #FFCC00;
+        transform: scale(1.05);
+        box-shadow: 0 0 25px 6px #FFCC00;
+    }
+    
+    .login-btn:target .form-container:target{
+        display: none;
+        opacity: 0;
+    }
+    
+    .login-btn:active {
+        text-decoration: none;
+    }
+    
+    .remember-forgot {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        margin-top: -5px;
+        margin-bottom: 15px;
+        font-size: 14px;
+    }
+    
+    label {
+        font-size: 14px;
+        margin-top: -3px;
+        display: flex;
+        align-items: center;
+    }
+    
+    a {
+
+        color: #00FFE6;
+        text-decoration: none;
+        cursor:pointer;
+    }
+    
+    a:hover {
+        text-decoration: underline;
+    }
+    
+    .Register {
+        width: 90%;
+        font-size: 12px;
+        margin-top: -5px;
+    }
+
+    .remember {
+        margin-left: 5px;
+    }
+    
+@media (min-width: 576px) {
+    
+    body {
+        font-size: 24px;
+    }
+    .form-container {
+        width:100%;
+        max-width: 600px;
+        padding: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        padding: 25px;
+    }
+    
+    .input-user-pass {
+        width: 100%;
+        height: 75px;
+        padding: 18px;
+        font-size: 26px;
+        font-weight: 600;
+    }
+    
+    .remember-forgot {
+        margin-top: -5px;
+        margin-bottom: 25px;
+        font-size: 18px;
+        width: 90%;
+    }
+    
+    .login-btn {
+        width: 100%;
+        height: 75px;
+        font-size: 20px;
+    }
+    
+    .Register {
+        width: 100%;
+        font-size: 16px;
+        padding: 5px;
+    }
+    
+    label {
+        font-size: 14px;
+        margin-top: -3px;
+        display: flex;
+        align-items: center;
+    }
+    
+    h1 {
+        font-size: 50px;
+    }
+}
+
+    .navigation-bar{
+        z-index: 10;
+        width: 100%;
+        padding: 10px;
+        background: transparent;
+        backdrop-filter: blur(10px);
+        border-bottom: 2px solid #95FF00;
+        color: #95FF00;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+}
+
+    h2{
+        color: #00FFE6;
+        font-size: 1.3em;
+        font-weight: bold;
+}
+
+        .ul-li{
+        display: flex;
+        gap: 15px;;
+}
+
+    li {
+        list-style: none;
+        color: black;
+}    
+    .section{
+        
+    }
+    
+    </style>
+</head>
+<body>
+    <nav class="navigation-bar">
+        <h2>Ammar</h2>
+        <div class="ul-li">
+        <ul>
+            <li><a href="#login">•Login</a></li>
+        </ul>
+        <ul>
+            <li><a href="#Sign up">•Sign Up</a></li>
+        </ul>
+        <ul>
+            <li><a href="#">•About</a></li>
+        </ul>
+        </div>
+    </nav>
+    <main>
+        <section class="form-section">
+    <div class="form-container" id="login">
+        <form>
+            <h1>Login</h1>
+                <div class="div-btn">
+                    <input type="name" id="name" name="name" placeholder="Enter your E-mail Address" class="input-user-pass">
+                </div>
+                <div class="div-btn">
+                    <input type="password" id="password" name="password" placeholder="Enter your Password" class="input-user-pass">
+                </div>
+                <div class="remember-forgot">
+                   <label><input type="checkbox" class="remember"><p class="remember">Remember me</p></label>
+                   <a href="#">Forgot Password?</a>
+                </div>
+                <a href="#" class="login-btn">Login</a>
+                <p class="Register">Don't have an account?<a href="#" class="Register">Register</a></p>
+        </form>
+    </div>
+    </section>
+    <style>
+    * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+    body {
+        font-weight: 400;
+        background: rgba(255, 255, 255, 0.12);
+}
+
+    .form-section {
+        background: #0f172a;
+        background-size: cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    
+    @keyframes form {
+        from {
+            transform: scale(0);
+        }
+        to {
+            transform: scale(1.0);
+        }
+    }
+    
+    .form-container {
+        position: absolute;
+        top: 35%;
+        box-shadow:0 0 10px 4px;
+        display: none;
+        opacity: 0;
+        background: transparent;
+        backdrop-filter: blur(10px);
+        border: 1px solid #f0f0f0;
+        color: #0f172a;
+        width: 90%;
+        padding: 20px;
+        text-align: center;
+        border-radius: 8px;
+    }
+    
+    .form-container:target{
+        animation: form 2s;
+        display: block;
+        opacity: 1;
+    }
+    
+    @keyframes form {
+        from {
+            transform: scale(0);
+        }
+        to {
+            transform: scale(1);
+        }
+    }
+    
+    
+    form {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .input-user-pass {
+        width: 100%;
+        height: 50px;
+        border-radius: 25px;
+        padding: 15px;
+        border: none;
+        outline: none;
+        font-size: 16px;
+        font-weight: 400;
+        cursor: pointer;
+    }
+    
+    .div-btn {
+        width: 100%;
+    }
+    
+    .login-btn {
+        background-color: #0f172a;
+        width: 100%;
+        height: 50px;
+        border-radius:25px ;
+        border: none;
+        box-shadow:0 0 15px 6px #00f4ff ;
+        font-weight: bold;
+        cursor: pointer;
+        font-size: 18px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition:
+        background-color #0f172a ,
+        transform 0.3s,
+        box-shadow 0.3s ;
+    }
+    
+
+    .login-btn:hover {
+        background-color: #FFCC00;
+        transform: scale(1.05);
+        box-shadow: 0 0 25px 6px #FFCC00;
+    }
+    
+    .login-btn:target .form-container:target{
+        display: none;
+        opacity: 0;
+    }
+    
+    .login-btn:active {
+        text-decoration: none;
+    }
+    
+    .remember-forgot {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        margin-top: -5px;
+        margin-bottom: 15px;
+        font-size: 14px;
+    }
+    
+    label {
+        font-size: 14px;
+        margin-top: -3px;
+        display: flex;
+        align-items: center;
+    }
+    
+    a {
+
+        color: #00FFE6;
+        text-decoration: none;
+        cursor:pointer;
+    }
+    
+    a:hover {
+        text-decoration: underline;
+    }
+    
+    .Register {
+        width: 90%;
+        font-size: 12px;
+        margin-top: -5px;
+    }
+
+    .remember {
+        margin-left: 5px;
+    }
+    
+@media (min-width: 576px) {
+    
+    body {
+        font-size: 24px;
+    }
+    .form-container {
+        width:100%;
+        max-width: 600px;
+        padding: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        padding: 25px;
+    }
+    
+    .input-user-pass {
+        width: 100%;
+        height: 75px;
+        padding: 18px;
+        font-size: 26px;
+        font-weight: 600;
+    }
+    
+    .remember-forgot {
+        margin-top: -5px;
+        margin-bottom: 25px;
+        font-size: 18px;
+        width: 90%;
+    }
+    
+    .login-btn {
+        width: 100%;
+        height: 75px;
+        font-size: 20px;
+    }
+    
+    .Register {
+        width: 100%;
+        font-size: 16px;
+        padding: 5px;
+    }
+    
+    label {
+        font-size: 14px;
+        margin-top: -3px;
+        display: flex;
+        align-items: center;
+    }
+    
+    h1 {
+        font-size: 50px;
+    }
+}
+
+    .navigation-bar{
+        z-index: 10;
+        width: 100%;
+        padding: 10px;
+        background: transparent;
+        backdrop-filter: blur(10px);
+        border-bottom: 2px solid #95FF00;
+        color: #95FF00;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+}
+
+    h2{
+        color: #00FFE6;
+        font-size: 1.3em;
+        font-weight: bold;
+}
+
+        .ul-li{
+        display: flex;
+        gap: 15px;;
+}
+
+    li {
+        list-style: none;
+        color: black;
+}    
+    .section{
+        
+    }
+    
+    </style>
+</head>
+<body>
+
+    <main>
+        <section class="form-section">
+    <div class="form-container" id="Sign up">
+        <form>
+            <h1>Sign Up</h1>
+                <div class="div-btn">
+                    <input type="name" id="name" name="name" placeholder="Enter your Username" class="input-user-pass">
+                </div>
+                <div class="div-btn">
+                    <input type="password" id="password" name="password" placeholder="Enter your Password" class="input-user-pass">
+                </div>
+                <div class="remember-forgot">
+                   <label><input type="checkbox" class="remember"><p class="remember">Remember me</p></label>
+                   <a href="#">Forgot Password?</a>
+                </div>
+                <a href="#" class="login-btn">Login</a>
+                <p class="Register">Don't have an account?<a href="#" class="Register">Register</a></p>
+        </form>
+    </div>
+    </section>
+    </main>
+
+</body>
+</html>
